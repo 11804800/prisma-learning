@@ -40,3 +40,20 @@ export const UpdateUser=async (req,res)=>{
     });
     res.status(200).json({message:"User Updated Successfully"});
 }
+
+
+export const FindUsers=async(req,res)=>{
+    const data=await prisma.user.findMany({});
+    res.status(200).json({data:data});
+}
+
+
+export const FindUserById=async (req,res)=>{
+    const userId=req.params.Id;
+    const data=await prisma.user.findFirst({
+        where:{
+            id:Number(userId)
+        }
+    });
+    res.status(200).json({data:data});
+}
