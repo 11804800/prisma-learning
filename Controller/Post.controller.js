@@ -33,6 +33,9 @@ export const UpdatePost=async (req,res)=>{
 
 export const FindPost=async(req,res)=>{
     const data=await prisma.post.findMany({
+        orderBy:{
+            id:"desc"
+        },
         include:{
             comment:true
         }
