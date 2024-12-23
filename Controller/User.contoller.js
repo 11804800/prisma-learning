@@ -57,3 +57,14 @@ export const FindUserById=async (req,res)=>{
     });
     res.status(200).json({data:data});
 }
+
+
+export const DeleteUser=async (req,res)=>{
+    const userId=req.params.Id;
+    const data=await prisma.user.delete({
+        where:{
+            id:Number(userId)
+        }
+    });
+    res.status(200).json({message:"User Deleted Successfully"});
+}
