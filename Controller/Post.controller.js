@@ -32,7 +32,11 @@ export const UpdatePost=async (req,res)=>{
 
 
 export const FindPost=async(req,res)=>{
-    const data=await prisma.post.findMany({});
+    const data=await prisma.post.findMany({
+        include:{
+            comment:true
+        }
+    });
     res.status(200).json({data:data});
 }
 

@@ -43,7 +43,16 @@ export const UpdateUser=async (req,res)=>{
 
 
 export const FindUsers=async(req,res)=>{
-    const data=await prisma.user.findMany({});
+    const data=await prisma.user.findMany({
+        include:{
+            post:{
+                select:{
+                    title:true,
+                    comment_count:true
+                }
+            }
+        }
+    });
     res.status(200).json({data:data});
 }
 
